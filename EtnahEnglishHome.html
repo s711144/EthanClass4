@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的英文學習連結</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #FFFFFF; /* 網頁背景色改為白色 */
+            margin: 0;
+            flex-direction: column;
+            color: #333; /* 文字顏色改為深色以在白色背景上更清晰 */
+            text-shadow: none; /* 移除文字陰影，因為白色背景不需要 */
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); /* 容器背景改為半透明白色 */
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* 陰影調整為淺色 */
+            backdrop-filter: blur(5px); /* 輕微模糊效果 */
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(200, 200, 200, 0.5); /* 邊框顏色調整 */
+            text-align: center;
+        }
+        h1 {
+            color: #333; /* 標題顏色改為深色 */
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            letter-spacing: 1.5px;
+        }
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .button {
+            padding: 18px 30px;
+            font-size: 1.2em;
+            color: white; /* 按鈕文字顏色保持白色 */
+            background-color: #4CAF50; /* 按鈕背景色改為綠色範例 */
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* 按鈕陰影調整 */
+            font-weight: bold;
+            letter-spacing: 0.8px;
+        }
+        .button:hover {
+            background-color: #45a049; /* 滑鼠懸停時按鈕顏色變深 */
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* 滑鼠懸停時陰影調整 */
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+                margin: 20px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            .button {
+                font-size: 1em;
+                padding: 15px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px 15px;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            .button-group {
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ethan請點擊按鈕，開始英文學習！</h1>
+        <div class="button-group">
+            <a href="https://s711144.github.io/EthanClass4/EthanEnglish-I-1~50.html" target="_blank" class="button">Ethan English I－1～50</a>
+            <a href="https://s711144.github.io/EthanClass4/EthanEnglish-I-51~100.html" target="_blank" class="button">Ethan English I－51～100</a>
+            <a href="https://s711144.github.io/EthanClass4/EthanEnglish-I-101~150.html" target="_blank" class="button">Ethan English I－101～150</a>
+            <a href="https://s711144.github.io/EthanClass4/EthanEnglish-II-1~50.html" target="_blank" class="button">Ethan English II－1～50</a>
+            <a href="https://s711144.github.io/EthanClass4/EthanEnglish-II-51~100.html" target="_blank" class="button">Ethan English II－51～100</a>
+            <a href="https://s711144.github.io/EthanClass4/EthanEnglish-II-101~150.html" target="_blank" class="button">Ethan English II－101～150</a>
+        </div>
+    </div>
+</body>
+</html>
