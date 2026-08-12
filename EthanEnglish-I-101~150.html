@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>四年級英文單字表-I- 101～150</title>
+    <style>
+        :root {
+            --primary-bg: #f0f8ff;
+            --card-bg: #ffffff;
+            --text-color: #333;
+            --primary-color: #007bff;
+            --secondary-color: #5a6268;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --border-color: #e0e0e0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+        }
+        .word-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .word-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+        .word-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px var(--shadow-color);
+        }
+        .word-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        .word-info .english {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 0;
+        }
+        .word-info .chinese {
+            font-size: 1.1rem;
+            color: #555;
+            margin: 5px 0 0 0;
+        }
+        .word-info .bopomofo {
+            font-size: 1rem;
+            color: #777;
+            margin: 0;
+        }
+        .word-index {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            opacity: 0.5;
+        }
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: auto; /* Push buttons to the bottom */
+        }
+        .btn {
+            flex-grow: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background-color 0.2s, transform 0.1s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn:active {
+            transform: scale(0.97);
+        }
+        .pronounce-btn {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .pronounce-btn:hover {
+            background-color: #0056b3;
+        }
+        .spell-btn {
+            background-color: #6c757d;
+            color: white;
+        }
+        .spell-btn:hover {
+            background-color: #5a6268;
+        }
+
+        .read-all-btn {
+            display: inline-flex;
+            width: auto;
+            min-width: 240px;
+            margin-top: 10px;
+            background-color: #28a745;
+            color: white;
+        }
+
+        .read-all-btn:hover {
+            background-color: #218838;
+        }
+
+        .read-control-btn {
+            display: inline-flex;
+            width: auto;
+            min-width: 180px;
+            margin: 10px 4px 0;
+            background-color: #007bff;
+            color: white;
+        }
+
+        .read-control-btn:hover {
+            background-color: #0069d9;
+        }
+
+        .read-all-btn.stop {
+            background-color: #dc3545;
+        }
+
+        .read-all-btn.stop:hover {
+            background-color: #c82333;
+        }
+
+        /* Responsive Design for smaller screens (iPhones, iPads) */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .word-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        /* ===== 拼字測驗 ===== */
+        .quiz-btn {
+            display: inline-flex;
+            width: auto;
+            min-width: 190px;
+            margin: 10px 4px 0;
+            background-color: #ff8c42;
+            color: white;
+        }
+        .quiz-btn:hover { background-color: #e8752c; }
+        .quiz-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            z-index: 1000;
+        }
+        .quiz-overlay.show { display: flex; }
+        .quiz-panel {
+            width: min(760px, 100%);
+            max-height: 92vh;
+            overflow-y: auto;
+            background: white;
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 16px 50px rgba(0,0,0,.25);
+            text-align: center;
+        }
+        .quiz-top { display: flex; justify-content: space-between; gap: 12px; align-items: center; margin-bottom: 12px; }
+        .quiz-progress { font-weight: 700; color: #555; }
+        .quiz-close { border: none; background: #e9ecef; border-radius: 8px; padding: 8px 12px; cursor: pointer; font-weight: 700; }
+        .quiz-title { margin: 6px 0 8px; color: var(--primary-color); font-size: 1.8rem; }
+        .quiz-clue { font-size: 1.2rem; color: #555; margin: 4px 0 14px; }
+        .quiz-answer {
+            min-height: 58px;
+            border: 2px dashed #9ec5fe;
+            border-radius: 12px;
+            background: #f7fbff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            flex-wrap: wrap;
+            padding: 10px;
+            margin: 10px 0 16px;
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #0056b3;
+        }
+        .quiz-empty { color: #9aa5b1; font-size: 1rem; font-weight: 500; letter-spacing: 0; }
+        .letter-bank { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 16px; }
+        .letter-btn {
+            min-width: 48px;
+            min-height: 48px;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 12px;
+            background: #007bff;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 800;
+            cursor: pointer;
+            touch-action: manipulation;
+            box-shadow: 0 3px 0 #0056b3;
+        }
+        .letter-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 #0056b3; }
+        .letter-btn.used { opacity: .35; pointer-events: none; }
+        .quiz-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+        .quiz-action-btn { flex: 0 1 180px; }
+        .submit-quiz-btn { background: #28a745; color: white; }
+        .submit-quiz-btn:hover { background: #218838; }
+        .clear-quiz-btn { background: #6c757d; color: white; }
+        .quiz-message { min-height: 28px; margin-top: 14px; font-weight: 800; font-size: 1.05rem; }
+        .quiz-message.correct { color: #198754; }
+        .quiz-message.wrong { color: #dc3545; }
+        .quiz-message.info { color: #b36b00; }
+        .quiz-complete { display: none; padding: 28px 10px; }
+        .quiz-complete.show { display: block; }
+        .quiz-complete h2 { color: #28a745; font-size: 2rem; margin-bottom: 10px; }
+        @media (max-width: 600px) {
+            .quiz-panel { padding: 18px 14px; }
+            .letter-btn { min-width: 44px; min-height: 44px; }
+            .quiz-title { font-size: 1.5rem; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>四年級英文單字表-I- 101～150</h1>
+            <button id="read-all-btn" class="btn read-all-btn">中文1次＋英文3次 🔊</button>
+            <button id="restart-read-btn" class="btn read-control-btn">重新朗讀 🔄</button>
+            <button id="read-first-25-btn" class="btn read-control-btn">朗讀前25個單字 ▶</button>
+            <button id="read-last-25-btn" class="btn read-control-btn">朗讀後25個單字 ▶</button>
+            <button id="quiz-first-25-btn" class="btn quiz-btn">前25個單字拼字測驗 ✏️</button>
+            <button id="quiz-last-25-btn" class="btn quiz-btn">後25個單字拼字測驗 ✏️</button>
+        </header>
+        <main>
+            <div id="word-grid" class="word-grid">
+                </div>
+        </main>
+    </div>
+
+
+    <div id="quiz-overlay" class="quiz-overlay" aria-hidden="true">
+        <div class="quiz-panel" role="dialog" aria-modal="true" aria-labelledby="quiz-title">
+            <div id="quiz-game">
+                <div class="quiz-top">
+                    <div id="quiz-progress" class="quiz-progress">第 1 / 25 題</div>
+                    <button id="quiz-close-btn" class="quiz-close">關閉 ✕</button>
+                </div>
+                <h2 id="quiz-title" class="quiz-title">拼字測驗</h2>
+                <div id="quiz-clue" class="quiz-clue"></div>
+                <div id="quiz-answer" class="quiz-answer"><span class="quiz-empty">請點選下方字母拼出單字</span></div>
+                <div id="letter-bank" class="letter-bank"></div>
+                <div class="quiz-actions">
+                    <button id="clear-answer-btn" class="btn quiz-action-btn clear-quiz-btn">清除重選</button>
+                    <button id="submit-answer-btn" class="btn quiz-action-btn submit-quiz-btn">送出答案 ✓</button>
+                </div>
+                <div id="quiz-message" class="quiz-message"></div>
+            </div>
+            <div id="quiz-complete" class="quiz-complete">
+                <h2>🎉 完成關卡！</h2>
+                <p id="quiz-complete-text"></p>
+                <button id="quiz-restart-btn" class="btn quiz-action-btn submit-quiz-btn">再挑戰一次 🔄</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const words = [
+            { id: 101, en: "season", zh: "季節", bopomofo: "ㄐㄧˋ ㄐㄧㄝˊ" },
+            { id: 102, en: "shape", zh: "形狀", bopomofo: "ㄒㄧㄥˊ ㄓㄨㄤˋ" },
+            { id: 103, en: "share", zh: "分享", bopomofo: "ㄈㄣ ㄒㄧㄤˇ" },
+            { id: 104, en: "sheep", zh: "綿羊", bopomofo: "ㄇㄧㄢˊ ㄧㄤˊ" },
+            { id: 105, en: "ship", zh: "船", bopomofo: "ㄔㄨㄢˊ" },
+            { id: 106, en: "shirt", zh: "襯衫", bopomofo: "ㄔㄣˋ ㄕㄢ" },
+            { id: 107, en: "shoe(s)", zh: "鞋子", bopomofo: "ㄒㄧㄝˊ ㄗ˙" },
+            { id: 108, en: "shop", zh: "商店", bopomofo: "ㄕㄤ ㄉㄧㄢˋ" },
+            { id: 109, en: "shy", zh: "害羞的", bopomofo: "ㄏㄞˋ ㄒㄧㄡ ㄉㄜ˙" },
+            { id: 110, en: "slow", zh: "慢的", bopomofo: "ㄇㄢˋ ㄉㄜ˙" },
+            { id: 111, en: "smoke", zh: "吸煙、煙", bopomofo: "ㄒㄧ ㄧㄢ、ㄧㄢ" },
+            { id: 112, en: "snake", zh: "蛇", bopomofo: "ㄕㄜˊ" },
+            { id: 113, en: "sock(s)", zh: "短襪", bopomofo: "ㄉㄨㄢˇ ㄨㄚˋ" },
+            { id: 114, en: "song", zh: "歌曲", bopomofo: "ㄍㄜ ㄑㄩˇ" },
+            { id: 115, en: "south", zh: "南方、南方的、南部的", bopomofo: "ㄋㄢˊ ㄈㄤ、ㄋㄢˊ ㄈㄤ ㄉㄜ˙、ㄋㄢˊ ㄅㄨˋ ㄉㄜ˙" },
+            { id: 116, en: "speak", zh: "說話", bopomofo: "ㄕㄨㄛ ㄏㄨㄚˋ" },
+            { id: 117, en: "spoon", zh: "湯匙", bopomofo: "ㄊㄤ ㄔˊ" },
+            { id: 118, en: "spring", zh: "春天", bopomofo: "ㄔㄨㄣ ㄊㄧㄢ" },
+            { id: 119, en: "story", zh: "故事", bopomofo: "ㄍㄨˋ ㄕˋ" },
+            { id: 120, en: "street", zh: "街道", bopomofo: "ㄐㄧㄝ ㄉㄠˋ" },
+            { id: 121, en: "sugar", zh: "糖", bopomofo: "ㄊㄤˊ" },
+            { id: 122, en: "summer", zh: "夏天", bopomofo: "ㄒㄧㄚˋ ㄊㄧㄢ" },
+            { id: 123, en: "sweater", zh: "毛衣", bopomofo: "ㄇㄠˊ ㄧ" },
+            { id: 124, en: "swim", zh: "游泳", bopomofo: "ㄧㄡˊ ㄩㄥˇ" },
+            { id: 125, en: "taxi", zh: "計程車", bopomofo: "ㄐㄧˋ ㄔㄥˊ ㄔㄜ" },
+            { id: 126, en: "Teacher's Day", zh: "教師節", bopomofo: "ㄐㄧㄠˋ ㄕ ㄐㄧㄝˊ" },
+            { id: 127, en: "telephone", zh: "電話", bopomofo: "ㄉㄧㄢˋ ㄏㄨㄚˋ" },
+            { id: 128, en: "thirsty", zh: "口渴的", bopomofo: "ㄎㄡˇ ㄎㄜˇ ㄉㄜ˙" },
+            { id: 129, en: "truck", zh: "貨車", bopomofo: "ㄏㄨㄛˋ ㄔㄜ" },
+            { id: 130, en: "week", zh: "星期（週）", bopomofo: "ㄒㄧㄥ ㄑㄧˊ（ㄓㄡ）" },
+            { id: 131, en: "white", zh: "白色", bopomofo: "ㄅㄞˊ ㄙㄜˋ" },
+            { id: 132, en: "window", zh: "窗戶", bopomofo: "ㄔㄨㄤ ㄏㄨˋ" },
+            { id: 133, en: "winter", zh: "冬天", bopomofo: "ㄉㄨㄥ ㄊㄧㄢ" },
+            { id: 134, en: "young", zh: "年輕", bopomofo: "ㄋㄧㄢˊ ㄑㄧㄥ" },
+            { id: 135, en: "Tuesday", zh: "星期二", bopomofo: "ㄒㄧㄥ ㄑㄧˊ ㄦˋ" },
+            { id: 136, en: "twelve", zh: "十二", bopomofo: "ㄕˊ ㄦˋ" },
+            { id: 137, en: "tired", zh: "疲倦的", bopomofo: "ㄆㄧˊ ㄐㄩㄢˋ ㄉㄜ˙" },
+            { id: 138, en: "today", zh: "今天", bopomofo: "ㄐㄧㄣ ㄊㄧㄢ" },
+            { id: 139, en: "train", zh: "火車", bopomofo: "ㄏㄨㄛˇ ㄔㄜ" },
+            { id: 140, en: "tree", zh: "樹", bopomofo: "ㄕㄨˋ" },
+            { id: 141, en: "two", zh: "二", bopomofo: "ㄦˋ" },
+            { id: 142, en: "walk", zh: "走路", bopomofo: "ㄗㄡˇ ㄌㄨˋ" },
+            { id: 143, en: "want", zh: "想要、需要", bopomofo: "ㄒㄧㄤˇ ㄧㄠˋ、ㄒㄩ ㄧㄠˋ" },
+            { id: 144, en: "wash", zh: "清洗", bopomofo: "ㄑㄧㄥ ㄒㄧˇ" },
+            { id: 145, en: "watch", zh: "看、手錶", bopomofo: "ㄎㄢˋ、ㄕㄡˇ ㄅㄧㄠˇ" },
+            { id: 146, en: "water", zh: "水", bopomofo: "ㄕㄨㄟˇ" },
+            { id: 147, en: "what", zh: "什麼", bopomofo: "ㄕㄣˊ ㄇㄜ˙" },
+            { id: 148, en: "windy", zh: "多風的、有風的、風大", bopomofo: "ㄉㄨㄛ ㄈㄥ ㄉㄜ˙、ㄧㄡˇ ㄈㄥ ㄉㄜ˙、ㄈㄥ ㄉㄚˋ" },
+            { id: 149, en: "write", zh: "寫", bopomofo: "ㄒㄧㄝˇ" },
+            { id: 150, en: "yellow", zh: "黃色", bopomofo: "ㄏㄨㄤˊ ㄙㄜˋ" },
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.getElementById('word-grid');
+            const synth = window.speechSynthesis;
+            let spellingQueue = [];
+            let isSpelling = false;
+
+            // 全部朗讀：每個單字依序播放「英文發音 → 英文拼字 → 中文發音」，
+            // 中文唸 1 次，英文發音＋英文拼音連續唸 3 次後，再換下一個單字。
+            let isReadingAll = false;
+            let isReadingPaused = false;
+            let readingQueue = [];
+            let readingIndex = 0;
+            let readingRepeat = 0;
+            let currentReadingItem = null;
+            let currentReadingUtterance = null;
+            let readingTimer = null;
+            const readAllBtn = document.getElementById('read-all-btn');
+            const restartReadBtn = document.getElementById('restart-read-btn');
+            const readFirst25Btn = document.getElementById('read-first-25-btn');
+            const readLast25Btn = document.getElementById('read-last-25-btn');
+
+            // 目前朗讀範圍：0～24 為前25個；25～49 為後25個；0～49 為全部。
+            let readingStart = 0;
+            let readingEnd = words.length;
+
+
+            // ===== 觸控拼字測驗 =====
+            const quizFirst25Btn = document.getElementById('quiz-first-25-btn');
+            const quizLast25Btn = document.getElementById('quiz-last-25-btn');
+            const quizOverlay = document.getElementById('quiz-overlay');
+            const quizGame = document.getElementById('quiz-game');
+            const quizComplete = document.getElementById('quiz-complete');
+            const quizCloseBtn = document.getElementById('quiz-close-btn');
+            const quizRestartBtn = document.getElementById('quiz-restart-btn');
+            const quizProgress = document.getElementById('quiz-progress');
+            const quizTitle = document.getElementById('quiz-title');
+            const quizClue = document.getElementById('quiz-clue');
+            const quizAnswer = document.getElementById('quiz-answer');
+            const letterBank = document.getElementById('letter-bank');
+            const submitAnswerBtn = document.getElementById('submit-answer-btn');
+            const clearAnswerBtn = document.getElementById('clear-answer-btn');
+            const quizMessage = document.getElementById('quiz-message');
+            const quizCompleteText = document.getElementById('quiz-complete-text');
+
+            let quizRangeName = '';
+            let quizOriginalWords = [];
+            let quizQueue = [];
+            let quizCurrent = null;
+            let quizSelected = [];
+            let quizWrongTriggered = false;
+            let quizCorrectRepeats = 0;
+            let quizFinishedCount = 0;
+
+            function shuffle(array) {
+                const copy = [...array];
+                for (let i = copy.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [copy[i], copy[j]] = [copy[j], copy[i]];
+                }
+                return copy;
+            }
+
+            function quizAnswerKey(word) {
+                // 測驗時忽略空格與連字號；保留字母與必要的撇號。
+                return word.en.toLowerCase().replace(/[\s-]/g, '');
+            }
+
+            function startQuiz(startIndex, endIndex, title) {
+                stopReadAll();
+                try { synth.cancel(); } catch (e) {}
+                quizRangeName = title;
+                quizOriginalWords = words.slice(startIndex, Math.min(endIndex, words.length));
+                quizQueue = shuffle(quizOriginalWords);
+                quizFinishedCount = 0;
+                quizCurrent = null;
+                quizOverlay.classList.add('show');
+                quizOverlay.setAttribute('aria-hidden', 'false');
+                quizGame.style.display = 'block';
+                quizComplete.classList.remove('show');
+                quizComplete.style.display = 'none';
+                nextQuizWord();
+            }
+
+            function nextQuizWord() {
+                if (quizQueue.length === 0) {
+                    finishQuiz();
+                    return;
+                }
+                quizCurrent = quizQueue.shift();
+                quizSelected = [];
+                quizWrongTriggered = false;
+                quizCorrectRepeats = 0;
+                renderQuizWord();
+            }
+
+            function renderQuizWord() {
+                const done = quizFinishedCount + 1;
+                quizProgress.textContent = `第 ${done} / ${quizOriginalWords.length} 題`;
+                quizTitle.textContent = `${quizRangeName}｜請拼出英文單字`;
+                quizClue.textContent = `提示：${quizCurrent.zh}　（${quizCurrent.bopomofo}）`;
+                quizMessage.textContent = '';
+                quizMessage.className = 'quiz-message';
+                renderSelectedLetters();
+                renderLetterBank();
+            }
+
+            function renderSelectedLetters() {
+                if (quizSelected.length === 0) {
+                    quizAnswer.innerHTML = '<span class="quiz-empty">請點選下方字母拼出單字</span>';
+                } else {
+                    quizAnswer.textContent = quizSelected.map(x => x.char).join('');
+                }
+            }
+
+            function renderLetterBank() {
+                letterBank.innerHTML = '';
+                const chars = shuffle([...quizAnswerKey(quizCurrent)]);
+                chars.forEach((char, index) => {
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = 'letter-btn';
+                    btn.textContent = char;
+                    btn.dataset.index = index;
+                    btn.addEventListener('click', () => {
+                        quizSelected.push({ char, index });
+                        btn.classList.add('used');
+                        renderSelectedLetters();
+                    });
+                    letterBank.appendChild(btn);
+                });
+            }
+
+            function clearQuizAnswer() {
+                quizSelected = [];
+                renderSelectedLetters();
+                letterBank.querySelectorAll('.letter-btn').forEach(btn => btn.classList.remove('used'));
+            }
+
+            function submitQuizAnswer() {
+                if (!quizCurrent) return;
+                const answer = quizSelected.map(x => x.char).join('');
+                const correct = quizAnswerKey(quizCurrent);
+                if (answer === correct) {
+                    if (quizWrongTriggered) {
+                        quizCorrectRepeats += 1;
+                        if (quizCorrectRepeats < 3) {
+                            quizMessage.textContent = `答對！因為剛才曾拼錯，還要再答對 ${3 - quizCorrectRepeats} 次才能過關。`;
+                            quizMessage.className = 'quiz-message info';
+                            clearQuizAnswer();
+                            return;
+                        }
+                        quizMessage.textContent = '連續答對 3 次，這個單字過關！';
+                    } else {
+                        quizMessage.textContent = '答對了！這個單字過關！';
+                    }
+                    quizMessage.className = 'quiz-message correct';
+                    quizFinishedCount += 1;
+                    submitAnswerBtn.disabled = true;
+                    clearAnswerBtn.disabled = true;
+                    setTimeout(() => {
+                        submitAnswerBtn.disabled = false;
+                        clearAnswerBtn.disabled = false;
+                        nextQuizWord();
+                    }, 800);
+                } else {
+                    // 拼錯時，先顯示正確英文單字，再開始「答對 3 次才過關」。
+                    quizWrongTriggered = true;
+                    quizCorrectRepeats = 0;
+
+                    // 將正確答案直接顯示在拼字區域，讓學生先看到正確拼法。
+                    quizSelected = correct.split('').map((char, index) => ({ char, index }));
+                    renderSelectedLetters();
+
+                    quizMessage.innerHTML = `拼錯了！正確答案是：<strong>${correct}</strong>`;
+                    quizMessage.className = 'quiz-message wrong';
+
+                    // 顯示正確答案時暫時不能操作，之後再重新考同一個單字。
+                    submitAnswerBtn.disabled = true;
+                    clearAnswerBtn.disabled = true;
+
+                    setTimeout(() => {
+                        submitAnswerBtn.disabled = false;
+                        clearAnswerBtn.disabled = false;
+                        clearQuizAnswer();
+                        quizMessage.textContent = '現在開始重新拼這個單字：需要連續答對 3 次才能過關。';
+                        quizMessage.className = 'quiz-message info';
+                    }, 4800);
+                }
+            }
+
+            function finishQuiz() {
+                quizGame.style.display = 'none';
+                quizComplete.style.display = 'block';
+                quizComplete.classList.add('show');
+                quizCompleteText.textContent = `${quizRangeName}的 ${quizOriginalWords.length} 個單字全部完成！`;
+            }
+
+            function closeQuiz() {
+                quizOverlay.classList.remove('show');
+                quizOverlay.setAttribute('aria-hidden', 'true');
+            }
+
+            quizFirst25Btn.addEventListener('click', () => startQuiz(0, 25, '前25個單字'));
+            quizLast25Btn.addEventListener('click', () => startQuiz(25, 50, '後25個單字'));
+            quizCloseBtn.addEventListener('click', closeQuiz);
+            quizOverlay.addEventListener('click', (event) => {
+                if (event.target === quizOverlay) closeQuiz();
+            });
+            quizRestartBtn.addEventListener('click', () => startQuiz(
+                quizRangeName === '前25個單字' ? 0 : 25,
+                quizRangeName === '前25個單字' ? 25 : 50,
+                quizRangeName
+            ));
+            clearAnswerBtn.addEventListener('click', clearQuizAnswer);
+            submitAnswerBtn.addEventListener('click', submitQuizAnswer);
+
+
+            // Generate word cards
+            words.forEach(word => {
+                const card = document.createElement('div');
+                card.className = 'word-card';
+                card.innerHTML = `
+                    <div class="word-header">
+                        <div class="word-info">
+                            <h2 class="english">${word.en}</h2>
+                            <p class="chinese">${word.zh}</p>
+                            <p class="bopomofo">${word.bopomofo}</p>
+                        </div>
+                        <div class="word-index">${word.id}</div>
+                    </div>
+                    <div class="buttons">
+                        <button class="btn pronounce-btn" data-word="${word.en}">發音 🔊</button>
+                        <button class="btn spell-btn" data-word="${word.en}">拼音 🔡</button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            // Event listener for all buttons
+            grid.addEventListener('click', (event) => {
+                // Cancel any ongoing speech
+                stopReadAll();
+                synth.cancel();
+                isSpelling = false;
+                spellingQueue = [];
+
+                const target = event.target;
+                if (target.matches('.pronounce-btn')) {
+                    const wordToSpeak = target.getAttribute('data-word');
+                    speak(wordToSpeak);
+                } else if (target.matches('.spell-btn')) {
+                    const wordToSpell = target.getAttribute('data-word');
+                    spell(wordToSpell);
+                }
+            });
+
+            function speak(text) {
+                if (synth.speaking) {
+                    console.error('SpeechSynthesis is already speaking.');
+                    return;
+                }
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.9;
+                synth.speak(utterance);
+            }
+            
+            // 「中文1次＋英文3次」：
+            // 每個單字：
+            // 第 1 次：英文單字 → 英文逐字拼音 → 中文
+            // 第 2 次：英文單字 → 英文逐字拼音 → 中文
+            // 第 3 次：英文單字 → 英文逐字拼音 → 中文
+            // 完成後才換下一個單字。
+            // 部分 Chrome / Edge 在連續朗讀較多內容時可能暫停 speechSynthesis。
+            // 定期 resume 可避免長時間朗讀時突然停止。
+            const speechKeepAlive = setInterval(() => {
+                if (isReadingAll && !isReadingPaused && !currentReadingUtterance) {
+                    try {
+                        if (synth.paused) synth.resume();
+                    } catch (e) {}
+                }
+            }, 4000);
+
+            readAllBtn.addEventListener('click', () => {
+                // 第一次按：開始朗讀
+                if (!isReadingAll) {
+                    synth.cancel();
+                    // 等瀏覽器清空上一段 speech queue 後再開始。
+                    isSpelling = false;
+                    spellingQueue = [];
+                    currentReadingUtterance = null;
+                    currentReadingItem = null;
+
+                    isReadingAll = true;
+                    isReadingPaused = false;
+                    readingStart = 0;
+                    readingEnd = words.length;
+                    readingIndex = readingStart;
+                    readingRepeat = 0;
+                    readingQueue = [];
+                    completedWords = 0;
+                    currentStage = 'chinese';
+                    englishRound = 0;
+                    clearSpeechWatchdog();
+                    currentReadingItem = null;
+                    currentReadingUtterance = null;
+
+                    readAllBtn.textContent = '暫停朗讀 ⏸';
+                    readAllBtn.classList.add('stop');
+                    speakCurrentWord();
+                    return;
+                }
+
+                // 已在朗讀：暫停，保留目前進度
+                if (!isReadingPaused) {
+                    pauseReadAll();
+                } else {
+                    // 已暫停：從原本未完成的位置繼續
+                    resumeReadAll();
+                }
+            });
+
+            // 從指定範圍重新開始朗讀。
+            // startIndex 為起始位置，endIndex 為不包含的結束位置。
+            function startReadingRange(startIndex, endIndex) {
+                synth.cancel();
+                clearSpeechWatchdog();
+
+                isSpelling = false;
+                spellingQueue = [];
+
+                isReadingAll = true;
+                isReadingPaused = false;
+
+                readingStart = Math.max(0, startIndex);
+                readingEnd = Math.min(words.length, endIndex);
+                readingIndex = readingStart;
+
+                readingRepeat = 0;
+                readingQueue = [];
+                completedWords = 0;
+                currentStage = 'chinese';
+                englishRound = 0;
+                currentReadingUtterance = null;
+                currentReadingItem = null;
+
+                readAllBtn.textContent = '暫停朗讀 ⏸';
+                readAllBtn.classList.add('stop');
+
+                speakCurrentWord();
+            }
+
+            // 重新朗讀：從目前這份單字表的第 1 個單字重新開始。
+            restartReadBtn.addEventListener('click', () => {
+                startReadingRange(0, words.length);
+            });
+
+            // 朗讀前 25 個單字：第 1～25 個。
+            readFirst25Btn.addEventListener('click', () => {
+                startReadingRange(0, Math.min(25, words.length));
+            });
+
+            // 朗讀後 25 個單字：第 26～50 個。
+            readLast25Btn.addEventListener('click', () => {
+                startReadingRange(
+                    Math.min(25, words.length),
+                    words.length
+                );
+            });
+
+            // 暫停：不清除 readingIndex / readingRepeat / readingQueue。
+            // 如果目前正在唸某一段，將該段放回佇列最前面，
+            // 這樣恢復時會從「未完成的英文 / 拼字 / 中文」重新完整唸該段。
+            function pauseReadAll() {
+                if (!isReadingAll || isReadingPaused) return;
+
+                isReadingPaused = true;
+
+                if (readingTimer) {
+                    clearTimeout(readingTimer);
+                    readingTimer = null;
+                }
+
+                clearSpeechWatchdog();
+
+                // 新版不依賴 readingQueue 保存進度，
+                // 而是保存 readingIndex / currentStage / englishRound。
+                // 因此暫停時直接取消目前 utterance 即可。
+                currentReadingItem = null;
+                currentReadingUtterance = null;
+
+                synth.cancel();
+
+                readAllBtn.textContent = '繼續朗讀 ▶';
+                readAllBtn.classList.remove('stop');
+            }
+
+            function resumeReadAll() {
+                if (!isReadingAll || !isReadingPaused) return;
+
+                isReadingPaused = false;
+                readAllBtn.textContent = '暫停朗讀 ⏸';
+                readAllBtn.classList.add('stop');
+
+                // 從保存的位置繼續，不重新從第 1 個單字開始。
+                setTimeout(() => {
+                    if (!isReadingAll || isReadingPaused) return;
+
+                    const word = words[readingIndex];
+                    if (!word || readingIndex >= readingEnd) {
+                        stopReadAll();
+                        return;
+                    }
+
+                    const spelling = word.en
+                        .replace(/-/g, ' ')
+                        .toUpperCase()
+                        .split('')
+                        .join(' ');
+
+                    if (currentStage === 'chinese') {
+                        speakOnePart(word.zh, 'zh-TW', 0.88, () => {
+                            if (!isReadingAll || isReadingPaused) return;
+                            currentStage = 'english';
+                            englishRound = 1;
+                            speakEnglishRound(word.en, spelling);
+                        });
+                    } else {
+                        speakEnglishRound(word.en, spelling);
+                    }
+                }, 200);
+            }
+
+            // 完整結束全部朗讀時才真正清除進度。
+            function stopReadAll() {
+                isReadingAll = false;
+                isReadingPaused = false;
+
+                if (readingTimer) {
+                    clearTimeout(readingTimer);
+                    readingTimer = null;
+                }
+
+                clearSpeechWatchdog();
+                speechGeneration++;
+
+                readingQueue = [];
+                readingIndex = 0;
+                readingRepeat = 0;
+                currentReadingItem = null;
+                currentReadingUtterance = null;
+
+                readAllBtn.textContent = '中文1次＋英文3次 🔊';
+                readAllBtn.classList.remove('stop');
+            }
+
+            // 鍵盤控制：
+            // 朗讀中按任意鍵 → 暫停並保留位置；
+            // 暫停後再按任意鍵 → 從未完成的位置繼續。
+            document.addEventListener('keydown', (event) => {
+                if (!isReadingAll) return;
+
+                // 避免空白鍵、方向鍵等造成網頁額外操作。
+                event.preventDefault();
+
+                if (isReadingPaused) {
+                    resumeReadAll();
+                } else {
+                    pauseReadAll();
+                }
+            });
+
+            // ===== 全部朗讀核心（穩定版） =====
+            // 中文 1 次 → 英文發音＋英文拼音 3 次 → 下一個單字
+            //
+            // 重點：
+            // 1. 永遠只讓 speechSynthesis 同時處理「一段」語音。
+            // 2. 不依賴長時間 speech queue。
+            // 3. 加入 watchdog：瀏覽器若無聲停止但沒有觸發 onend，
+            //    自動從目前這一段重新啟動。
+            // 4. 每 5 個單字主動重置 SpeechSynthesis，引擎長時間朗讀較不容易失效。
+
+            let currentStage = 'chinese';
+            let englishRound = 0;
+            let speechWatchdog = null;
+            let speechGeneration = 0;
+            let completedWords = 0;
+
+            function speakCurrentWord() {
+                if (!isReadingAll || isReadingPaused) return;
+
+                if (readingIndex >= readingEnd) {
+                    stopReadAll();
+                    return;
+                }
+
+                const word = words[readingIndex];
+
+                if (currentStage === 'chinese') {
+                    englishRound = 0;
+
+                    speakOnePart(
+                        word.zh,
+                        'zh-TW',
+                        0.88,
+                        () => {
+                            if (!isReadingAll || isReadingPaused) return;
+
+                            currentStage = 'english';
+                            englishRound = 1;
+                            speakEnglishRound(word.en);
+                        }
+                    );
+                } else {
+                    speakEnglishRound(word.en);
+                }
+            }
+
+            function speakEnglishRound(word) {
+                if (!isReadingAll || isReadingPaused) return;
+
+                const spelling = word
+                    .replace(/-/g, ' ')
+                    .toUpperCase()
+                    .split('')
+                    .join(' ');
+
+                // 英文發音
+                speakOnePart(
+                    word,
+                    'en-US',
+                    0.86,
+                    () => {
+                        if (!isReadingAll || isReadingPaused) return;
+
+                        // 英文拼音
+                        speakOnePart(
+                            spelling,
+                            'en-US',
+                            0.70,
+                            () => {
+                                if (!isReadingAll || isReadingPaused) return;
+
+                                if (englishRound < 3) {
+                                    englishRound++;
+
+                                    // 下一次英文
+                                    safeDelay(() => {
+                                        speakEnglishRound(word);
+                                    }, 180);
+                                } else {
+                                    // 這個單字完整完成
+                                    readingIndex++;
+                                    completedWords++;
+
+                                    currentStage = 'chinese';
+                                    englishRound = 0;
+
+                                    // 每 5 個單字重新啟動語音引擎。
+                                    // 這是為了避免 Chrome / Edge 長時間使用
+                                    // SpeechSynthesis 後偶發「無聲但沒有錯誤」。
+                                    if (completedWords % 1 === 0 && readingIndex < readingEnd) {
+                                        restartSpeechEngine(() => {
+                                            safeDelay(speakCurrentWord, 280);
+                                        });
+                                    } else {
+                                        safeDelay(speakCurrentWord, 280);
+                                    }
+                                }
+                            }
+                        );
+                    }
+                );
+            }
+
+            function speakOnePart(text, lang, rate, onComplete) {
+                if (!isReadingAll || isReadingPaused) return;
+
+                clearSpeechWatchdog();
+
+                const generation = ++speechGeneration;
+                const utterance = new SpeechSynthesisUtterance(text);
+
+                currentReadingUtterance = utterance;
+                currentReadingItem = {
+                    text: text,
+                    lang: lang,
+                    rate: rate
+                };
+
+                utterance.lang = lang;
+                utterance.rate = rate;
+                utterance.pitch = 1;
+                utterance.volume = 1;
+
+                let finished = false;
+
+                const finish = (success) => {
+                    if (finished) return;
+                    finished = true;
+
+                    clearSpeechWatchdog();
+
+                    if (!isReadingAll || isReadingPaused) return;
+                    if (generation !== speechGeneration) return;
+
+                    currentReadingUtterance = null;
+                    currentReadingItem = null;
+
+                    if (success) {
+                        onComplete();
+                    } else {
+                        // 語音引擎沒有正常完成：
+                        // 保留目前位置，稍後重新播放同一段。
+                        safeDelay(() => {
+                            if (isReadingAll && !isReadingPaused) {
+                                speakOnePart(text, lang, rate, onComplete);
+                            }
+                        }, 350);
+                    }
+                };
+
+                utterance.onend = () => finish(true);
+
+                utterance.onerror = (event) => {
+                    // cancel 通常來自暫停或引擎重置，不要在這裡重複排程。
+                    if (event && event.error === 'canceled') {
+                        clearSpeechWatchdog();
+                        return;
+                    }
+
+                    finish(false);
+                };
+
+                // 先確保瀏覽器沒有殘留 paused 狀態。
+                try {
+                    if (synth.paused) synth.resume();
+                } catch (e) {}
+
+                // 給 SpeechSynthesis 一點時間處理前一個 utterance。
+                safeDelay(() => {
+                    if (!isReadingAll || isReadingPaused) return;
+                    if (generation !== speechGeneration) return;
+
+                    try {
+                        synth.speak(utterance);
+                    } catch (e) {
+                        finish(false);
+                        return;
+                    }
+
+                    // watchdog：
+                    // 正常短單字通常會在幾秒內完成。
+                    // 若瀏覽器突然「不再說話」，自動恢復。
+                    // 快速 watchdog：
+                    // 短單字不必等 5 秒才檢查。
+                    // 正常語音仍會有足夠時間完成；若引擎無聲卡住，
+                    // 會更快進入恢復流程。
+                    const estimated = Math.max(
+                        2000,
+                        Math.min(6000, text.length * 300 + 1200)
+                    );
+
+                    speechWatchdog = setTimeout(() => {
+                        if (!isReadingAll || isReadingPaused) return;
+                        if (generation !== speechGeneration) return;
+
+                        // speaking 已經變 false，但 onend 沒有回來：
+                        // 立即判定為語音引擎異常並重試。
+                        if (!synth.speaking) {
+                            finish(false);
+                            return;
+                        }
+
+                        // 還在 speaking 時只再給短暫緩衝，
+                        // 避免正常較長的單字被過早中斷。
+                        speechWatchdog = setTimeout(() => {
+                            if (!isReadingAll || isReadingPaused) return;
+                            if (generation !== speechGeneration) return;
+
+                            try {
+                                synth.cancel();
+                            } catch (e) {}
+
+                            finish(false);
+                        }, 2500);
+                    }, estimated);
+                }, 40);
+            }
+
+            function clearSpeechWatchdog() {
+                if (speechWatchdog) {
+                    clearTimeout(speechWatchdog);
+                    speechWatchdog = null;
+                }
+            }
+
+            function safeDelay(callback, delay) {
+                if (readingTimer) {
+                    clearTimeout(readingTimer);
+                }
+
+                readingTimer = setTimeout(() => {
+                    readingTimer = null;
+
+                    if (isReadingAll && !isReadingPaused) {
+                        callback();
+                    }
+                }, delay);
+            }
+
+            function restartSpeechEngine(callback) {
+                clearSpeechWatchdog();
+
+                try {
+                    synth.cancel();
+                } catch (e) {}
+
+                // 讓瀏覽器真正清空 speech engine 後再開始。
+                safeDelay(() => {
+                    if (!isReadingAll || isReadingPaused) return;
+
+                    try {
+                        synth.resume();
+                    } catch (e) {}
+
+                    callback();
+                }, 300);
+            }
+
+            function spell(word) {
+                // 拼音按鈕與「全部朗讀」中的英文拼音完全使用同一種格式。
+                // 例如：agree → A G R E E
+                // 注意：這裡傳入的是 data-word 的「字串」，不是 word 物件。
+                const spelling = word
+                    .replace(/-/g, ' ')
+                    .toUpperCase()
+                    .split('')
+                    .join(' ');
+
+                const utterance = new SpeechSynthesisUtterance(spelling);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.78;
+                utterance.pitch = 1;
+                utterance.volume = 1;
+
+                // 先取消上一個語音，再播放拼音。
+                synth.cancel();
+
+                setTimeout(() => {
+                    synth.speak(utterance);
+                }, 50);
+            }
+
+            function speakNextLetter() {
+                if (!isSpelling || spellingQueue.length === 0) {
+                    isSpelling = false;
+                    return;
+                }
+                
+                const letter = spellingQueue.shift();
+                const utterance = new SpeechSynthesisUtterance(letter);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.8;
+                
+                // When one letter finishes, speak the next one
+                utterance.onend = () => {
+                    if (isSpelling) {
+                       setTimeout(speakNextLetter, 100); // Small delay between letters
+                    }
+                };
+
+                synth.speak(utterance);
+            }
+        });
+    </script>
+
+</body>
+</html>
